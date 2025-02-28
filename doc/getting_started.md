@@ -130,3 +130,4 @@ Library sources are delivered with SEGGER JLink, so you can find it from your JL
 - PDF [Getting Started Guide](https://alifsemi.com/download/AUGD0012) (With manual tools installation. Does not use Arm Environment Manager or CMSIS solution)
 - ARM Environment Manager [description](https://marketplace.visualstudio.com/items?itemName=Arm.environment-manager)
 - CMSIS-Toolbox [repository](https://github.com/Open-CMSIS-Pack/cmsis-toolbox)
+- CMSIS-Toolbox [documentation](https://open-cmsis-pack.github.io/cmsis-toolbox/)
