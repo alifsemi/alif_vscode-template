@@ -1,7 +1,7 @@
 #include "RTE_Components.h"
 #include CMSIS_device_header
 
-#include "Driver_GPIO.h"
+#include "Driver_IO.h"
 #include "board.h"
 
 #define _GET_DRIVER_REF(ref, peri, chan) \
