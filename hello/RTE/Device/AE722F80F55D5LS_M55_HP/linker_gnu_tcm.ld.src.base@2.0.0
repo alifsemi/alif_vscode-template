@@ -1,5 +1,4 @@
-
-/* This file was ported to work on Alif Semiconductor family of devices. */
+/* This file was ported to work on Alif Semiconductor Ensemble family of devices. */
 
 /* Copyright (C) 2023 Alif Semiconductor - All Rights Reserved.
  * Use, distribution and modification of this code is permitted under the
@@ -27,14 +26,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include "app_mem_regions.h"
 
-__STACK_SIZE    = 0x00002000;
-__HEAP_SIZE     = 0x00004000;
-__APP_HEAP_SIZE = 0x00004000;
-__ROM_BASE      = 0x80000000;
-__ROM_SIZE      = 0x00200000;
-
-TGU_BLOCK_SIZE   = 16384;
+#define __STACK_SIZE             APP_HP_STACK_SIZE
+#define __HEAP_SIZE              APP_HP_HEAP_SIZE
+#define __APP_HEAP_SIZE          0x00004000
 
 /*
  * Note:
@@ -45,18 +41,17 @@ TGU_BLOCK_SIZE   = 16384;
 
 MEMORY
 {
-  ITCM  (rwx) : ORIGIN = 0x00000000, LENGTH = 0x00040000
-  DTCM  (rwx) : ORIGIN = 0x20000000, LENGTH = 0x00040000
-  SRAM0 (rwx) : ORIGIN = 0x02000000, LENGTH = 0x00400000
-  SRAM1 (rwx) : ORIGIN = 0x08000000, LENGTH = 0x00280000
-  MRAM  (rx)  : ORIGIN = __ROM_BASE, LENGTH = __ROM_SIZE
+  ITCM  (rwx) : ORIGIN = APP_ITCM_BASE , LENGTH = APP_HP_ITCM_SIZE
+  DTCM  (rwx) : ORIGIN = APP_DTCM_BASE , LENGTH = APP_HP_DTCM_SIZE
+  SRAM0 (rwx) : ORIGIN = APP_SRAM0_BASE, LENGTH = APP_SRAM0_SIZE
+  SRAM1 (rwx) : ORIGIN = APP_SRAM1_BASE, LENGTH = APP_SRAM1_SIZE
 }
 
 ENTRY(Reset_Handler)
 
 SECTIONS
 {
-  .startup.at_mram : ALIGN(2048)
+  .startup.at_itcm : ALIGN(2048)
   {
     KEEP(*(.vectors))
 
@@ -70,8 +65,7 @@ SECTIONS
 
     *lv_*(.text .rodata*)
 
-    . = ALIGN(16);
-  } > MRAM
+  } > ITCM
 
   .copy.table : ALIGN(4)
   {
@@ -79,12 +73,8 @@ SECTIONS
     LONG ( LOADADDR(.data.at_dtcm) )
     LONG ( ADDR(.data.at_dtcm) )
     LONG ( SIZEOF(.data.at_dtcm)/4 )
-    LONG ( LOADADDR(.code.at_itcm) )
-    LONG ( ADDR(.code.at_itcm) )
-    LONG ( SIZEOF(.code.at_itcm)/4 )
     __copy_table_end__ = .;
-    . = ALIGN(16);
-  } > MRAM
+  } > ITCM
 
   .zero.table : ALIGN(4)
   {
@@ -94,14 +84,12 @@ SECTIONS
     LONG (ADDR(.bss.at_sram0))
     LONG (SIZEOF(.bss.at_sram0)/4)
     __zero_table_end__ = .;
-    . = ALIGN(16);
-  } > MRAM
+  } > ITCM
 
   .code.at_itcm : ALIGN(8)
   {
     *(.text*)
-    . = ALIGN(16);
-  } > ITCM AT > MRAM
+  } > ITCM
 
   .data.at_dtcm : ALIGN(8)
   {
@@ -118,8 +106,8 @@ SECTIONS
     __exidx_start = .;
     *(.ARM.exidx* .gnu.linkonce.armexidx.*)
     __exidx_end = .;
-    . = ALIGN(16);
-  } > DTCM AT > MRAM
+
+  } > DTCM AT > ITCM
 
   .bss.at_sram0 (NOLOAD) : ALIGN(8)
   {
@@ -157,7 +145,7 @@ SECTIONS
      __RAM_segment_used_end__ = .;
      . = . + __APP_HEAP_SIZE;
      . = ALIGN(8);
-   } >DTCM
+   } > DTCM
 
   .heap (NOLOAD) : ALIGN(8)
   {
@@ -177,7 +165,7 @@ SECTIONS
   } > DTCM
   PROVIDE(__stack = __StackTop);
 
-  .readonly.at_mram : ALIGN(8)
+  .readonly.at_itcm : ALIGN(8)
   {
     /* Use wildcards to mop up any read-only not directed to TCM */
     KEEP(*(.init))
@@ -220,8 +208,7 @@ SECTIONS
     *(.rodata*)
 
     KEEP(*(.eh_frame*))
-    . = ALIGN(16);
-  } > MRAM
+  } > ITCM
 
   /* Check if data + heap + stack exceeds RAM limit */
   ASSERT(__StackLimit >= __HeapLimit, "region RAM overflowed with stack")

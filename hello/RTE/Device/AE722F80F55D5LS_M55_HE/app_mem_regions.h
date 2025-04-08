@@ -116,14 +116,14 @@
 // <h>RTSS HE
 //   <o0> Stack Size (in Bytes) <0x0-0x400000:8>
 //   <o1> Heap Size (in Bytes) <0x0-0x400000:8>
-#define APP_HE_STACK_SIZE 0x00001000
+#define APP_HE_STACK_SIZE 0x00002000
 #define APP_HE_HEAP_SIZE 0x00004000
 // </h>
 
 // <h>RTSS HP
 //   <o0> Stack Size (in Bytes) <0x0-0x400000:8>
 //   <o1> Heap Size (in Bytes) <0x0-0x400000:8>
-#define APP_HP_STACK_SIZE 0x00001000
+#define APP_HP_STACK_SIZE 0x00002000
 #define APP_HP_HEAP_SIZE 0x00004000
 // </h>
 
@@ -164,6 +164,8 @@
 
 #define APP_HP_ITCM_SIZE      APP_SRAM2_SIZE
 #define APP_HP_DTCM_SIZE      APP_SRAM3_SIZE
+
+#define TGU_BLOCK_SIZE        16384
 
 #define __HAS_BULK_SRAM     1
 

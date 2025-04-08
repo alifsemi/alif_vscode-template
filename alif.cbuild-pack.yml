@@ -10,3 +10,6 @@ cbuild-pack:
       selected-by-pack:
         - AlifSemiconductor::Ensemble
         - AlifSemiconductor::Ensemble@2.0.0-alpha
+    - resolved-pack: AlifSemiconductor::Ensemble@2.0.0-alpha1
+      selected-by-pack:
+        - AlifSemiconductor::Ensemble@2.0.0-alpha1
