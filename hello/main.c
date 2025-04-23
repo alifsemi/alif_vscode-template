@@ -32,7 +32,7 @@ int main (void)
 
     fault_dump_enable(true);
 
-    BOARD_LED2_Control(BOARD_LED_STATE_HIGH);
+    BOARD_LED1_Control(BOARD_LED_STATE_HIGH);
 
     printf("\r\nHello World!\r\n");
 

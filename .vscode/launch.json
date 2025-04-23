@@ -12,7 +12,7 @@
             "showDevDebugOutput": "parsed",
             "device": "${command:cmsis-csolution.getDeviceName}_${command:cmsis-csolution.getProcessorName}",
             "interface": "jtag",
-            "serverArgs": ["-JLinkDevicesXmlPath" ".alif/JLinkDevices.xml"],
+            "serverArgs": ["-JLinkDevicesXmlPath", ".alif/JLinkDevices.xml"],
             "preLaunchCommands": [
                 "monitor speed 15000"
             ],
@@ -30,7 +30,7 @@
                         "type": "console"
                     }
                 ]
-            },
+            }
         }
     ]
 }

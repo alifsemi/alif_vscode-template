@@ -15,12 +15,8 @@
 #include <stdio.h>
 
 #include "board.h"
-#include "uart_tracelib.h"
 #include "fault_handler.h"
 
-static void uart_callback(uint32_t event)
-{
-}
 
 int main (void)
 {
@@ -29,7 +25,7 @@ int main (void)
 
     fault_dump_enable(true);
 
-    BOARD_LED2_Control(BOARD_LED_STATE_HIGH);
+    BOARD_LED1_Control(BOARD_LED_STATE_HIGH);
 
     printf("\r\nHello World!\r\n");
 

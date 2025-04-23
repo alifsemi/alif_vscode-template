@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/tools/projmgr/2.6.0/tools/projmgr/schemas/clayer.schema.json
+
+layer:
+  components:
+    - component: ARM::CMSIS:CORE
+    - component: AlifSemiconductor::Device:SKU&AE722F80F55D5
+      for-context:
+      - +HE
+      - +HP
+    - component: AlifSemiconductor::Device:SKU&AE1C1F4051920
+      for-context:
+      - +E1C
+
+    - component: AlifSemiconductor::Device:Startup
+    - component: AlifSemiconductor::Device:SOC Peripherals:PINCONF
+    - component: AlifSemiconductor::Device:SOC Peripherals:GPIO
+    - component: AlifSemiconductor::CMSIS Driver:USART

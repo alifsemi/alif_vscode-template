@@ -20,33 +20,31 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 // <o> Alif Development Kit variant
-//     <0=> Alif Development Kit (Generation 1 Silicon Rev A / Board Rev B and Rev C)
-//     <1=> Alif AI/ML Application Kit (Generation 1 Silicon Rev A / Board Rev A)
-//     <2=> Alif AI/ML Application Kit (Generation 1 Silicon Rev A / Board Rev B)
-//     <3=> Alif Development Kit (Generation 2 Silicon Rev B / Internal CoB Board)
-//     <4=> Alif Development Kit (Generation 2 Silicon RevBA / Board Rev A, B, C)
+//     <0>-<3> Deprecated boards
+//     <4=> Alif Development Kit (Generation 2 Silicon Rev B / Board Rev A, B, C)
 //     <5=> Alif AI/ML Application Kit (Generation 2 Silicon Rev B / Board Rev A)
-#define BOARD_ALIF_DEVKIT_VARIANT       4
+//     <6=> Alif Development Kit for E1C Silicon Rev A
+#ifndef BOARD_ALIF_DEVKIT_VARIANT
+#define BOARD_ALIF_DEVKIT_VARIANT       0
+#endif
 
-#if (BOARD_ALIF_DEVKIT_VARIANT == 0)
-#define BOARD_IS_ALIF_DEVKIT_VARIANT
-#include "devkit_gen1/board_defs.h"
-#elif (BOARD_ALIF_DEVKIT_VARIANT == 1)
-#define BOARD_IS_ALIF_APPKIT_ALPHA1_VARIANT
-#include "appkit_alpha1/board_defs.h"
-#elif (BOARD_ALIF_DEVKIT_VARIANT == 2)
-#define BOARD_IS_ALIF_APPKIT_ALPHA2_VARIANT
-#include "appkit_alpha2/board_defs.h"
-#elif (BOARD_ALIF_DEVKIT_VARIANT == 3)
-#define BOARD_IS_ALIF_DEVKIT_B0_COB_VARIANT
-#include "devkit_b0_cob/board_defs.h"
+#if (BOARD_ALIF_DEVKIT_VARIANT >= 0 && BOARD_ALIF_DEVKIT_VARIANT <= 3)
+#error "Support for legacy boards has been deprecated"
 #elif (BOARD_ALIF_DEVKIT_VARIANT == 4)
 #define BOARD_IS_ALIF_DEVKIT_B0_VARIANT
 #include "devkit_gen2/board_defs.h"
 #elif (BOARD_ALIF_DEVKIT_VARIANT == 5)
 #define BOARD_IS_ALIF_APPKIT_B1_VARIANT
 #include "appkit_gen2/board_defs.h"
+#elif (BOARD_ALIF_DEVKIT_VARIANT == 6)
+#define BOARD_IS_ALIF_DEVKIT_E1C_VARIANT
+#include "devkit_e1c/board_defs.h"
+#else
+#error "Unknown board variant"
 #endif
 
 // <o> ILI9806E LCD panel variant
@@ -87,6 +85,8 @@ void BOARD_BUTTON1_GetState(BOARD_BUTTON_STATE *state);
 void BOARD_BUTTON2_GetState(BOARD_BUTTON_STATE *state);
 void BOARD_LED1_Control(BOARD_LED_STATE state);
 void BOARD_LED2_Control(BOARD_LED_STATE state);
-
+#ifdef __cplusplus
+}
+#endif
 #endif
 #endif

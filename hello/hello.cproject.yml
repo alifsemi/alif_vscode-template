@@ -4,13 +4,15 @@ project:
     - group: App
       files:
         - file: main.c
-    - group: Board
+    - group: Trace
       files:
-        - file: ../libs/board/devkit_gen2/board_init.c
-        - file: ../libs/board/appkit_gen2/board_init.c
         - file: ../libs/common_app_utils/logging/uart_tracelib.c
         - file: ../libs/common_app_utils/logging/retarget.c
         - file: ../libs/common_app_utils/fault_handler/fault_handler.c
+
+  add-path:
+    - ../libs/common_app_utils/logging
+    - ../libs/common_app_utils/fault_handler
 
   output:
     base-name: $Project$
@@ -18,17 +20,6 @@ project:
       - elf
       - bin
 
-  add-path:
-    - .
-    - ../board/
-    - ../libs/board/
-    - ../libs/common_app_utils/logging
-    - ../libs/common_app_utils/fault_handler
-  components:
-    # needed for Alif Ensemble support
-    - component: ARM::CMSIS:CORE
-    - component: AlifSemiconductor::Device:SKU&AE722F80F55D5
-    - component: AlifSemiconductor::Device:Startup
-    - component: AlifSemiconductor::Device:SOC Peripherals:PINCONF
-    - component: AlifSemiconductor::Device:SOC Peripherals:GPIO
-    - component: AlifSemiconductor::CMSIS Driver:USART
+  layers:
+    - layer: ../device/ensemble/alif-ensemble.clayer.yml
+    - layer: ../board/board.clayer.yml
