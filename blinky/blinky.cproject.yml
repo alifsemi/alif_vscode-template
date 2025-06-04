@@ -13,4 +13,3 @@ project:
 
   layers:
     - layer: ../device/ensemble/alif-ensemble.clayer.yml
-    - layer: ../board/board.clayer.yml
