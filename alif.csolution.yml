@@ -11,7 +11,7 @@ solution:
   compiler: GCC
 
   packs:
-    - pack: AlifSemiconductor::Ensemble@2.0.0-rc1
+    - pack: AlifSemiconductor::Ensemble@2.0.0-rc2
     - pack: ARM::CMSIS@6.0.0
 
   target-types:
