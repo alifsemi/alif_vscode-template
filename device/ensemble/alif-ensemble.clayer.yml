@@ -3,18 +3,10 @@
 layer:
   components:
     - component: ARM::CMSIS:CORE
-    - component: AlifSemiconductor::Device:SKU&AE722F80F55D5
-      for-context:
-      - +HE
-      - +HP
     - component: BSP:Board Config&Devkit-e7
       for-context:
       - +HE
       - +HP
-
-    - component: AlifSemiconductor::Device:SKU&AE1C1F4051920
-      for-context:
-      - +E1C
     - component: BSP:Board Config&Devkit-e1c
       for-context:
       - +E1C
