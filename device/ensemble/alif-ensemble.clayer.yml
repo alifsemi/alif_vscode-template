@@ -7,7 +7,7 @@ layer:
       for-context:
       - +HE
       - +HP
-    - component: BSP:Board Config&Devkit-e1c
+    - component: BSP:Board Config&DevKit-e1c
       for-context:
       - +E1C
 

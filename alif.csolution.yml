@@ -27,7 +27,7 @@ solution:
         - "CORE_M55_HP"
     - type: E1C
       device: Alif Semiconductor::AE1C1F4051920PH:M55_HE
-      board: DevKit-E1C
+# To be enabled after fix for PSBT-1073      board: DevKit-E1C
       define:
         - "CORE_M55_HE"
 
