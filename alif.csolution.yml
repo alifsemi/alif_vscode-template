@@ -15,21 +15,38 @@ solution:
     - pack: ARM::CMSIS@6.0.0
 
   target-types:
-    - type: HE
+    - type: E7-HE
       device: Alif Semiconductor::AE722F80F55D5LS:M55_HE
       board: DevKit-E7
       define:
         - "CORE_M55_HE"
-    - type: HP
+
+    - type: E7-HP
       device: Alif Semiconductor::AE722F80F55D5LS:M55_HP
       board: DevKit-E7
       define:
         - "CORE_M55_HP"
-    - type: E1C
+
+    - type: E1C-HE
       device: Alif Semiconductor::AE1C1F4051920PH:M55_HE
-# To be enabled after fix for PSBT-1073      board: DevKit-E1C
+# To be enabled after fix for PSBT-1073
+#    board: DevKit-E1C
       define:
         - "CORE_M55_HE"
+
+    - type: E8-HE
+      device: Alif Semiconductor::AE822FA0E5597LS0:M55_HE
+# To be enabled after fix for PSBT-1073
+#      board: DevKit-E8
+      define:
+        - "CORE_M55_HE"
+
+    - type: E8-HP
+      device: Alif Semiconductor::AE822FA0E5597LS0:M55_HP
+# To be enabled after fix for PSBT-1073
+#      board: DevKit-E8
+      define:
+        - "CORE_M55_HP"
 
   build-types:
     - type: debug
