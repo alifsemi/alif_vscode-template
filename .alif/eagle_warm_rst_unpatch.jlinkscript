@@ -1,0 +1,9 @@
+///-----------------------------------------------------------------------------
+/// @file    eagle_warm_rst_unpatch.jlinkscript
+/// @brief   Override the overriden reset behavior in newer J-Link DLLs
+///-----------------------------------------------------------------------------
+
+int SetupTarget(void)
+{
+  return 0;
+}
