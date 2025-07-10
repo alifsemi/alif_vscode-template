@@ -271,6 +271,9 @@
 // <i> Sets the #define BOARD_LEDRGB_COUNT in the board_def.h file exported from the Conductor tool.
 #define BOARD_LEDRGB_COUNT                2
 
+// <o> RGB LED instance number <0-1>
+#define BOARD_RGB_LED_INSTANCE            0
+
 // <o> Onboard Push-buttons
 // <i> Sets the #define BOARD_BUTTON_COUNT in the board_def.h file exported from the Conductor tool.
 #define BOARD_BUTTON_COUNT                5
