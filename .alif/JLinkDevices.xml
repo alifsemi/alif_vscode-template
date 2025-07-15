@@ -12,9 +12,15 @@
     <ChipInfo Name="AB1C1F4M51820" Aliases="AB1C1F4M51820PH; AB1C1F4M51820HH" JLinkScriptFile=".alif/1c_reset_override.jlinkscript"/>
   </Device>
   <Device InheritFrom="AE722F80F55D5_HE">
-    <ChipInfo Name="AE822FA0E5597LS0_M55_HE" Aliases="AE822FA0E5597AS0_M55_HE" JLinkScriptFile="eagle_warm_rst_unpatch.jlinkscript"/>
+    <ChipInfo Name="AE822FA0E5597LS0_M55_HE" Aliases="AE822FA0E5597BS0_M55_HE" JLinkScriptFile="eagle_warm_rst_unpatch.jlinkscript"/>
   </Device>
   <Device InheritFrom="AE722F80F55D5_HP">
-    <ChipInfo Name="AE822FA0E5597LS0_M55_HP" Aliases="AE822FA0E5597AS0_M55_HP" JLinkScriptFile="eagle_warm_rst_unpatch.jlinkscript"/>
+    <ChipInfo Name="AE822FA0E5597LS0_M55_HP" Aliases="AE822FA0E5597BS0_M55_HP" JLinkScriptFile="eagle_warm_rst_unpatch.jlinkscript"/>
+  </Device>
+  <Device InheritFrom="AE722F80F55D5_HE">
+    <ChipInfo Name="AE402FA0E5597LE0_M55_HE" Aliases="AE402FA0E5597BE0_M55_HE" JLinkScriptFile="eagle_warm_rst_unpatch.jlinkscript"/>
+  </Device>
+  <Device InheritFrom="AE722F80F55D5_HP">
+    <ChipInfo Name="AE402FA0E5597LE0_M55_HP" Aliases="AE402FA0E5597BE0_M55_HP" JLinkScriptFile="eagle_warm_rst_unpatch.jlinkscript"/>
   </Device>
 </DataBase>
