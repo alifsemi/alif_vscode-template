@@ -30,3 +30,23 @@ project:
 
   layers:
     - layer: ../device/ensemble/alif-ensemble.clayer.yml
+  components:
+    - component: AlifSemiconductor::BSP:Board Config
+    - component: AlifSemiconductor::BSP:DevKit Config&DevKit-e7
+      for-context:
+        - +E7-HE.debug
+        - +E7-HP.debug
+        - +E7-HP.release
+        - +E7-HE.release
+    - component: AlifSemiconductor::BSP:DevKit Config&DevKit-e8
+      for-context:
+        - +E8-HE.debug
+        - +E8-HE.release
+        - +E8-HP.debug
+        - +E8-HP.release
+    - component: AlifSemiconductor::BSP:DevKit Config&DevKit-e1c
+      for-context:
+        - +E1C-HE.debug
+        - +E1C-HE.release
+  packs:
+    - pack: AlifSemiconductor::Ensemble

@@ -3,17 +3,6 @@
 layer:
   components:
     - component: ARM::CMSIS:CORE
-    - component: BSP:Board Config&Devkit-e7
-      for-context:
-      - +E7-HE
-      - +E7-HP
-    - component: BSP:Board Config&DevKit-e1c
-      for-context:
-      - +E1C-HE
-    - component: BSP:Board Config&DevKit-e8
-      for-context:
-      - +E8-HE
-      - +E8-HP
     - component: AlifSemiconductor::Device:Startup
     - component: AlifSemiconductor::Device:SOC Peripherals:PINCONF
     - component: AlifSemiconductor::Device:SOC Peripherals:GPIO
