@@ -14,22 +14,19 @@
 
 #include <stdio.h>
 
-#include "board.h"
-#include "uart_tracelib.h"
+#include "board_config.h"
 #include "fault_handler.h"
 
-static void uart_callback(uint32_t event)
-{
-}
 
 int main (void)
 {
-    // Init pinmux using boardlib
-    BOARD_Pinmux_Init();
+    // Initialize pinmuxes
+    int32_t ret = board_pins_config();
+    if (ret != 0) {
+        while(1);
+    }
 
     fault_dump_enable(true);
-
-    BOARD_LED2_Control(BOARD_LED_STATE_HIGH);
 
     printf("\r\nHello World!\r\n");
 

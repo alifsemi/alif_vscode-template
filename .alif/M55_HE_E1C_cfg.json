@@ -1,0 +1,16 @@
+{
+  "DEVICE": {
+    "disabled" : false,
+    "binary": "app-device-config-1c.json",
+    "version" : "0.5.00",
+    "signed": true
+  },
+  "USER_APP": {
+    "binary": "alif-img.bin",
+    "mramAddress": "0x80000000",
+    "version": "1.0.0",
+    "cpu_id": "M55_HE",
+    "flags": ["boot"],
+    "signed": false
+  }
+}

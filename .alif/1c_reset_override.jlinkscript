@@ -1,0 +1,25 @@
+///-----------------------------------------------------------------------------
+/// @file    1c_reset_override.jlinkscript
+/// @brief   Override reset behavior to use reset pin
+///-----------------------------------------------------------------------------
+
+__constant U32 _NVIC_ICER0 = 0xE000E180; // NVIC Interrupt Clear-Enable Registers
+__constant U32 _NVIC_ICPR0 = 0xE000E280; // NVIC Interrupt Clear-Pending Registers
+
+U32 icer0;
+U32 icpr0;
+
+int ResetTarget(void)
+{
+  JLINK_SYS_Report("Bypassing reset request");
+
+  JLINK_TARGET_Halt();
+
+  // Optional: clear SysTick IER in the NVIC in case "blinky" stub enabled it
+  icpr0 = JLINK_MEM_ReadU32(_NVIC_ICPR0);
+  JLINK_MEM_WriteU32(_NVIC_ICPR0, (icpr0 | (1 << 15)));
+  icer0 = JLINK_MEM_ReadU32(_NVIC_ICER0);
+  JLINK_MEM_WriteU32(_NVIC_ICER0, (icer0 | (1 << 15)));
+
+  return 0;
+}
