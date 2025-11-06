@@ -50,7 +50,7 @@
 //     <1=> enable
 // <i> Defines CPI ISP port
 // <i> Default: ISP port disable
-#define RTE_CPI_ISP_PORT                                      0
+#define RTE_CPI_ISP_PORT                                      1
 
 // <o> CPI Row roundup
 //     <0=> disable
@@ -355,6 +355,139 @@
 
 #endif
 // </e> LPCPI (Camera) [Driver_LPCPI]
+
+// <e> ISP (ISP) [Driver_ISP]
+// <i> Configuration settings for Driver_ISP in component ::Drivers:ISP
+#define RTE_ISP 1
+#if RTE_ISP
+
+// <o> ISP IRQ priority <0-255>
+// <i> Defines Interrupt priority for ISP.
+// <i> Default: 0
+#define RTE_ISP_IRQ_PRIORITY                    0
+
+// <o> ISP Enable AE Module
+//     <0=> disable
+//     <1=> enable
+// <i> defines if AE Module is enabled or not
+// <i> default: false
+#define RTE_ISP_AE_MODULE 0
+
+// <o> ISP Enable BLS Module
+//     <0=> disable
+//     <1=> enable
+// <i> defines if Black Level Subtraction Module is enabled or not
+// <i> default: false
+#define RTE_ISP_BLS_MODULE 0
+
+// <o> ISP Enable DMSC Module
+//     <0=> disable
+//     <1=> enable
+// <i> defines if Demosaic Module is enabled or not
+// <i> default: false
+#define RTE_ISP_DMSC_MODULE 1
+
+// <o> ISP Enable FLT Module
+//     <0=> disable
+//     <1=> enable
+// <i> defines if Noise/Sharpening-Filter Module is enabled or not
+// <i> default: false
+#define RTE_ISP_FLT_MODULE 0
+
+// <o> ISP Enable CCM Module
+//     <0=> disable
+//     <1=> enable
+// <i> defines if Color Correction Matrix Module is enabled or not
+// <i> default: false
+#define RTE_ISP_CCM_MODULE 1
+
+// <o> ISP Enable CSM Module
+//     <0=> disable
+//     <1=> enable
+// <i> defines if Color Space Conversion Module is enabled or not
+// <i> default: false
+#define RTE_ISP_CSM_MODULE 0
+
+// <o> ISP Enable WB Module
+//     <0=> disable
+//     <1=> enable
+// <i> defines if White Balancing Module is enabled or not
+// <i> default: false
+#define RTE_ISP_WB_MODULE 1
+
+// <o> ISP Enable EXPM Module
+//     <0=> disable
+//     <1=> enable
+// <i> defines if Auto-Exposure Statistics Module is enabled or not
+// <i> default: false
+#define RTE_ISP_EXPM_MODULE 0
+
+// <o> ISP Enable Gamma-out Module
+//     <0=> disable
+//     <1=> enable
+// <i> defines if Gamma-out Module is enabled or not
+// <i> default: false
+#define RTE_ISP_GAMMAOUT_MODULE 0
+
+// <o> ISP Enable WBM Module
+//     <0=> disable
+//     <1=> enable
+// <i> defines if White-Balancing Statistics Module is enabled or not
+// <i> default: false
+#define RTE_ISP_WBM_MODULE 1
+
+// <o> ISP Enable Binning Module
+//     <0=> disable
+//     <1=> enable
+// <i> defines if Binning Module is enabled or not
+// <i> default: false
+#define RTE_ISP_BINNING_MODULE 0
+
+// <o> ISP Enable Scaling Module
+//     <0=> disable
+//     <1=> enable
+// <i> defines if scaling Module is enabled or not
+// <i> default: true
+#define RTE_ISP_SCALAR_MODULE 1
+
+// <o> ISP log level
+//    <0=> NONE
+//    <1 => Logs all fatal errors.
+//    <2=> Logs all warnings.
+//    <3=> Logs all informational messages.
+//    <4=> Logs all debug messages.
+//    <5=> Log level verbose
+// <i> Defines ISP logging level
+#define RTE_ISP_LOG_LEVEL 5
+
+// <o> ISP Buffer Count <2-8>
+// <i> Number of video buffers for ISP
+#define RTE_ISP_BUFFER_COUNT 1
+
+// <o> ISP Output Format
+//    <20=> RAW8 (8-bit raw)
+//    <21=> RAW10 (10-bit raw)
+//    <22=> RAW12 (12-bit raw)
+//    <23=> NV12 (YUV420 semi-planar)
+//    <25=> NV16 (YUV422 semi-planar)
+//    <30=> YUV422P (YUV422 planar)
+//    <31=> YUV420P (YUV420 planar)
+//    <32=> YUYV (YUV422 packed)
+//    <37=> YUV400 (Grayscale)
+//    <38=> RGB888 (RGB interleaved)
+//    <39=> RGB888P (RGB planar)
+//    <40=> RAW420SP (RAW420 semi-planar)
+//    <41=> RAW422SP (RAW422 semi-planar)
+// <i> Defines ISP output pixel format for memory dump
+// <i> Default: RGB888
+#define RTE_ISP_OUTPUT_FORMAT 32
+
+#define RTE_ISP_OUTPUT_WIDTH 480
+
+#define RTE_ISP_OUTPUT_HEIGHT 480
+
+#endif
+// </e> ISP (ISP) [Driver_ISP]
 
 // <e> MIPI_CSI2 (mipi csi2) [Driver_MIPI_CSI2]
 // <i> Configuration settings for Driver_MIPI_CSI2 in component ::Drivers:MIPI_CSI2
@@ -897,8 +1030,8 @@
 //     <3=>   640x480_RGB565
 //     <4=>   320x240_RGB565
 //     <5=>   320x320_RGB565
-// <i> Default: 0
-#define RTE_MT9M114_CAMERA_SENSOR_MIPI_IMAGE_CONFIG            2
+// <i> Default: 1
+#define RTE_MT9M114_CAMERA_SENSOR_MIPI_IMAGE_CONFIG            1
 
 // <o> select MT9M114 MIPI number of lanes in DPHY
 // <i> defines select MT9M114 MIPI number of lanes in DPHY.
@@ -1314,7 +1447,7 @@
 //     <5=> 24bit
 // <i> Defines Color mode for display panel
 // <i> Default: 24bit
-#define RTE_ILI9806E_PANEL_DSI_COLOR_MODE   1
+#define RTE_ILI9806E_PANEL_DSI_COLOR_MODE   5
 
 // <o> Number of data lanes
 //     <1=> ONE
@@ -1611,7 +1744,7 @@
 //      <7=> ARGB4444
 // <i> Defines CDC200 pixel format
 // <i> Default: RGB888
-#define RTE_CDC200_PIXEL_FORMAT   2
+#define RTE_CDC200_PIXEL_FORMAT   1
 
 // <o> CDC200 Constant alpha <0-255>
 // <i> Defines CDC200 constant alpha range from 0 (fully transparent) to 255 or 1.0 (fully opaque).
@@ -1837,6 +1970,8 @@
 
 // <o> ICM42670 IMU INT pin GPIO port number range <0-15>
 // <i> Defines ICM42670 IMU INT pin GPIO port number.
+//    <1=> Port number for E8 Appkit
+//    <8=> Port number for E8 Devkit
 // <i> Default: 8
 #define RTE_ICM42670_INT_IO_PORT 8
 
@@ -1857,6 +1992,8 @@
 
 // <o> BMI323 IMU INT pin GPIO port number range <0-15>
 // <i> Defines BMI323 IMU INT pin GPIO port number.
+//    <1=> Port number for E8 Appkit
+//    <8=> Port number for E8 Devkit
 // <i> Default: 8
 #define RTE_BMI323_INT_IO_PORT 8
 

@@ -258,9 +258,6 @@
 // <i> Sets the #define BOARD_LEDRGB_COUNT in the board_def.h file exported from the Conductor tool.
 #define BOARD_LEDRGB_COUNT                              1
 
-// <o> RGB LED instance number <0-1>
-#define BOARD_RGB_LED_INSTANCE                          0
-
 // <o> Onboard Push-buttons
 // <i> Sets the #define BOARD_BUTTON_COUNT in the board_def.h file exported from the Conductor tool.
 #define BOARD_BUTTON_COUNT                              5
@@ -1058,7 +1055,7 @@
 #define BOARD_LPI2C0_SDA_GPIO_PORT                      0
 // <o> "LPI2C0_SDA_A" GPIO pin number <0=> PIN0 <1=> PIN1 <2=> PIN2 <3=> PIN3 <4=> PIN4 <5=> PIN5
 // <6=> PIN6 <7=> PIN7
-#define BOARD_LPI2C0_SDA_GPIO_PIN                       0
+#define BOARD_LPI2C0_SDA_GPIO_PIN                       1
 // <o> "LPI2C0_SDA_A" GPIO pin alternate function <0-7>
 #define BOARD_LPI2C0_SDA_ALTERNATE_FUNCTION             5
 
@@ -1067,7 +1064,7 @@
 #define BOARD_LPI2C0_SCL_GPIO_PORT                      0
 // <o> "LPI2C0_SCL_A" GPIO pin number <0=> PIN0 <1=> PIN1 <2=> PIN2 <3=> PIN3 <4=> PIN4 <5=> PIN5
 // <6=> PIN6 <7=> PIN7
-#define BOARD_LPI2C0_SCL_GPIO_PIN                       1
+#define BOARD_LPI2C0_SCL_GPIO_PIN                       0
 // <o> "LPI2C0_SCL_A" GPIO pin alternate function <0-7>
 #define BOARD_LPI2C0_SCL_ALTERNATE_FUNCTION             5
 
