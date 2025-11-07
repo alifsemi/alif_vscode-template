@@ -1,4 +1,4 @@
-/* This file was ported to work on Alif Semiconductor family of devices. */
+/* This file was ported to work on Alif Semiconductor Ensemble family of devices. */
 
 /* Copyright (C) 2023 Alif Semiconductor - All Rights Reserved.
  * Use, distribution and modification of this code is permitted under the
@@ -28,9 +28,9 @@
  */
 #include "app_mem_regions.h"
 
-#define __STACK_SIZE            APP_HE_STACK_SIZE
-#define __HEAP_SIZE             APP_HE_HEAP_SIZE
-#define __APP_HEAP_SIZE         0x00004000
+#define __STACK_SIZE             APP_HP_STACK_SIZE
+#define __HEAP_SIZE              APP_HP_HEAP_SIZE
+#define __APP_HEAP_SIZE          0x00004000
 
 /*
  * Note:
@@ -41,8 +41,8 @@
 
 MEMORY
 {
-  ITCM  (rwx) : ORIGIN = APP_ITCM_BASE , LENGTH = APP_HE_ITCM_SIZE
-  DTCM  (rwx) : ORIGIN = APP_DTCM_BASE , LENGTH = APP_HE_DTCM_SIZE
+  ITCM  (rwx) : ORIGIN = APP_ITCM_BASE , LENGTH = APP_HP_ITCM_SIZE
+  DTCM  (rwx) : ORIGIN = APP_DTCM_BASE , LENGTH = APP_HP_DTCM_SIZE
   #if __HAS_BULK_SRAM
   SRAM0 (rwx) : ORIGIN = APP_SRAM0_BASE, LENGTH = APP_SRAM0_SIZE
   SRAM1 (rwx) : ORIGIN = APP_SRAM1_BASE, LENGTH = APP_SRAM1_SIZE
@@ -53,6 +53,12 @@ ENTRY(Reset_Handler)
 
 SECTIONS
 {
+  /DISCARD/ :
+  {
+      *(.ARM.exidx*)
+      *(.ARM.extab* .gnu.linkonce.armextab.*)
+  }
+
   .startup.at_itcm : ALIGN(2048)
   {
     KEEP(*(.vectors))
@@ -72,6 +78,10 @@ SECTIONS
   .copy.table : ALIGN(4)
   {
     __copy_table_start__ = .;
+    LONG ( LOADADDR(.tdata.at_dtcm) )
+    LONG ( ADDR(.tdata.at_dtcm) )
+    LONG ( SIZEOF(.tdata.at_dtcm)/4 )
+
     LONG ( LOADADDR(.data.at_dtcm) )
     LONG ( ADDR(.data.at_dtcm) )
     LONG ( SIZEOF(.data.at_dtcm)/4 )
@@ -81,10 +91,14 @@ SECTIONS
   .zero.table : ALIGN(4)
   {
     __zero_table_start__ = .;
+    LONG (ADDR(.tbss))
+    LONG (SIZEOF(.tbss)/4)
     LONG (ADDR(.bss))
     LONG (SIZEOF(.bss)/4)
+#if __HAS_BULK_SRAM
     LONG (ADDR(.bss.at_sram0))
     LONG (SIZEOF(.bss.at_sram0)/4)
+#endif
     __zero_table_end__ = .;
   } > ITCM
 
@@ -92,6 +106,27 @@ SECTIONS
   {
     *(.text*)
   } > ITCM
+
+  /* Thread Local Storage (.tdata) */
+  .tdata.at_dtcm : ALIGN(8)
+  {
+    /* TLS base = beginning of TLS block */
+    __tls_base = .;
+    /* Offset inside TLS block where TCB is expected */
+    __arm32_tls_tcb_offset = .;
+    /* Initialized TLS variables */
+    *(.tdata .tdata.* .gnu.linkonce.td.*)
+    __tdata_end = .;
+  } > DTCM AT > ITCM
+
+  /* Thread-Local Uninitialized Data (.tbss) */
+  .tbss (NOLOAD) : ALIGN(8)
+  {
+    *(.tbss .tbss.* .gnu.linkonce.tb.*)
+    /* TLS commons here */
+    *(.tcommon)
+    __tbss_end = .;
+  } > DTCM
 
   .data.at_dtcm : ALIGN(8)
   {
@@ -111,6 +146,7 @@ SECTIONS
 
   } > DTCM AT > ITCM
 
+#if __HAS_BULK_SRAM
   .bss.at_sram0 (NOLOAD) : ALIGN(8)
   {
     *(.bss.lcd_crop_and_interpolate_buf)  /* LCD crop and intrepolate image processing buffer. */
@@ -118,6 +154,7 @@ SECTIONS
     *(.bss.camera_frame_buf)              /* Camer Frame Buffer */
     *(.bss.camera_frame_bayer_to_rgb_buf) /* (Optional) Camera Frame Buffer for Bayer to RGB Conversion. */
   } > SRAM0
+#endif
 
   .bss (NOLOAD) : ALIGN(8)
   {
@@ -215,4 +252,23 @@ SECTIONS
 
   /* Check if data + heap + stack exceeds RAM limit */
   ASSERT(__StackLimit >= __HeapLimit, "region RAM overflowed with stack")
+
+  /* Picolib crt on clang compiler requires below definitions for data and bss sections copy.
+   * We have multiple sections at diff memory locations to copy e.g. itcm, dtcm etc.
+   * but the __start of picolib copies one section only.
+   * So, setting data and bss defines to zero to skip it.
+   */
+  PROVIDE(__stack_limit = __StackLimit);
+  PROVIDE(__data_start = 0);
+  PROVIDE(__data_source = 0);
+  PROVIDE(__data_size = 0);
+  PROVIDE(__bss_start = 0);
+  PROVIDE(__bss_size = 0);
+  PROVIDE(__heap_start = 0);
+  PROVIDE(__heap_end = 0);
+
+  /* TLS helper sizes */
+  __tdata_size = __tdata_end - __tls_base;
+  __tbss_size  = __tbss_end - __tdata_end;
+  __tls_end    = __tbss_end;
 }
