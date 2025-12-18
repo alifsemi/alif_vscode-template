@@ -47,10 +47,10 @@
             "label": "Prepare program with Security Toolkit",
             "type": "shell",
             "command": [
-                    "outputElfFilename='${command:cmsis-csolution.getBinaryFile}';",
-                    "cp \"${outputElfFilename/%???/bin}\" '${config:alif.setools.root}/build/images/alif-img.bin';",
-                    "cp './.alif/${command:cmsis-csolution.getProcessorName}_cfg.json' '${config:alif.setools.root}/alif-img.json';"
-                ],
+                "outputElfFilename='${command:cmsis-csolution.getBinaryFile}';",
+                "cp \"${outputElfFilename/%???/bin}\" '${config:alif.setools.root}/build/images/alif-img.bin';",
+                "cp './.alif/${command:cmsis-csolution.getProcessorName}_cfg.json' '${config:alif.setools.root}/alif-img.json';"
+            ],
             "windows": {
                 "command": [
                     "$outputElfFilename='${command:cmsis-csolution.getBinaryFile}';",
@@ -64,7 +64,9 @@
         {
             "label": "Program with Security Toolkit",
             "type": "shell",
-            "options": {"cwd": "${config:alif.setools.root}"},
+            "options": {
+                "cwd": "${config:alif.setools.root}"
+            },
             "command": [
                 "./app-gen-toc -f alif-img.json;",
                 "./app-write-mram -p;",
@@ -77,7 +79,9 @@
         {
             "label": "Program with Security Toolkit (select COM port)",
             "type": "shell",
-            "options": {"cwd": "${config:alif.setools.root}"},
+            "options": {
+                "cwd": "${config:alif.setools.root}"
+            },
             "command": [
                 "./app-gen-toc -f alif-img.json;",
                 "./app-write-mram -p -d;",
@@ -90,7 +94,9 @@
         {
             "label": "Update TOC with Security Toolkit",
             "type": "shell",
-            "options": {"cwd": "${config:alif.setools.root}"},
+            "options": {
+                "cwd": "${config:alif.setools.root}"
+            },
             "command": [
                 "./app-gen-toc -f alif-img.json;",
                 "./app-write-mram -S;",
@@ -103,20 +109,24 @@
         {
             "label": "Install debug stubs with Security Toolkit",
             "type": "shell",
-            "options": {"cwd": "${config:alif.setools.root}"},
+            "options": {
+                "cwd": "${config:alif.setools.root}"
+            },
             "command": [
                 "./app-gen-toc -f ./build/config/app-cpu-stubs.json;",
-                "./app-write-mram;",
+                "./app-write-mram;"
             ],
             "problemMatcher": []
         },
         {
             "label": "Install debug stubs with Security Toolkit (select COM port)",
             "type": "shell",
-            "options": {"cwd": "${config:alif.setools.root}"},
+            "options": {
+                "cwd": "${config:alif.setools.root}"
+            },
             "command": [
                 "./app-gen-toc -f ./build/config/app-cpu-stubs.json;",
-                "./app-write-mram -d;",
+                "./app-write-mram -d;"
             ],
             "problemMatcher": []
         }
