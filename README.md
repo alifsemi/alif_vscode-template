@@ -19,12 +19,7 @@ for older Gen 1 devices.
 First clone the template project repository
 ```
 git clone https://github.com/alifsemi/alif_vscode-template.git
-cd alif_vscode-template
-git submodule update --init
-```
-OR
-```
-git clone --recursive https://github.com/alifsemi/alif_vscode-template.git
+
 ```
 
 To build the template for a supported board other than the DevKit, you have to update the `board.h` file to pick the right variant of the board.
