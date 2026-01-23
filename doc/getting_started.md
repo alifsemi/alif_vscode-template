@@ -34,10 +34,7 @@ There are example build-type options for IAR and armclang in the solution.
 
 ```
 git clone https://github.com/alifsemi/alif_vscode-template.git
-cd alif_vscode-template
-git submodule update --init
 ```
-  ![Git clone in Windows terminal](images/git_clone.png)
 
 ## Visual Studio Code start up and the environment activation
 

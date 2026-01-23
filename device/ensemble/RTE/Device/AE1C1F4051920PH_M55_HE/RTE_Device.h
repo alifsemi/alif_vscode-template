@@ -1839,7 +1839,7 @@
 //    <1=> ENABLE
 // <i> Defines Blocking mode support for UART2
 // <i> Default: DISABLE
-#define RTE_UART2_BLOCKING_MODE_ENABLE 0
+#define RTE_UART2_BLOCKING_MODE_ENABLE 1
 
 #endif  // UART2
 

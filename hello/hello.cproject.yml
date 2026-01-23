@@ -4,15 +4,6 @@ project:
     - group: App
       files:
         - file: main.c
-    - group: Trace
-      files:
-        - file: ../libs/common_app_utils/logging/uart_tracelib.c
-        - file: ../libs/common_app_utils/logging/retarget.c
-        - file: ../libs/common_app_utils/fault_handler/fault_handler.c
-
-  add-path:
-    - ../libs/common_app_utils/logging
-    - ../libs/common_app_utils/fault_handler
 
   output:
     base-name: $Project$
@@ -25,3 +16,9 @@ project:
 
   packs:
     - pack: AlifSemiconductor::Ensemble
+    - pack: ARM::CMSIS-Compiler
+
+  components:
+    - component: ARM::CMSIS-Compiler:CORE
+    - component: ARM::CMSIS-Compiler:STDOUT:Custom
+    - component: AlifSemiconductor::Services:Retarget IO:STDOUT
