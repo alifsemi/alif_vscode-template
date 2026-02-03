@@ -108,7 +108,7 @@ New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name
 Before starting a debug session, make sure the debugger stubs are programmed onto the M55 core. Press F1, type "Run", select "Tasks: Run Task", and choose "Alif: Install M55_HE or M55_HP debug stubs (single core configuration)". The SE Tool you configured earlier will handle programming the debug stubs to the device. This process disables sleep mode, allowing the debugger to connect.
   ![CMSIS solution](images/stubs.png)
 
-This guide uses the ARM CMSIS debugger extension. To start debugging, open the "Run and Debug" panel in VS Code and choose "M55_HE JLink (launch)" as the configuration.
+This guide uses the ARM CMSIS debugger extension. To start debugging, open the "Run and Debug" panel in VS Code and choose the configuration that matches your target core, for example "M55_HE JLink (launch)" or "M55_HP JLink (launch)".
 <br>
   ![CMSIS solution](images/cmsis_debugger.png)
 In the CMSIS solution view, first click the Build Solution icon (hammer) to build your project. Once the build completes, click the Load & Debug Application icon to launch the debugger and start a debug session.
