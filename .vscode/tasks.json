@@ -114,7 +114,7 @@
             },
             "command": [
                 "./app-gen-toc -f ./build/config/app-cpu-stubs.json;",
-                "./app-write-mram;"
+                "./app-write-mram"
             ],
             "problemMatcher": []
         },
