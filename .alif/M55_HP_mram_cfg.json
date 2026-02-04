@@ -12,7 +12,7 @@
         "signed": true,
         "loadAddress": "0x02000000",
         "cpu_id": "A32_0",
-        "flags": ["load","boot"]
+        "flags": ["load", "boot"]
     },
     "HP_APP": {
         "disabled": false,
