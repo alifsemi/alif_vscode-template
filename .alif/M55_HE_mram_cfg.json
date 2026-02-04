@@ -12,7 +12,7 @@
         "signed": true,
         "loadAddress": "0x02000000",
         "cpu_id": "A32_0",
-        "flags": ["load","boot"]
+        "flags": ["load", "boot"]
     },
     "HP_STUB": {
         "disabled": false,
@@ -21,7 +21,7 @@
         "signed": true,
         "loadAddress": "0x50000000",
         "cpu_id": "M55_HP",
-        "flags": ["load","boot"]
+        "flags": ["load", "boot"]
     },
     "HE_APP": {
         "disabled": false,
