@@ -84,7 +84,7 @@ New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name
 
 - Click the CMSIS icon on the left sidebar and the CMSIS solution view opens up.<br>
   ![CMSIS solution](images/cmsis_solution.png)
-- Clicking the Settings icon (sprocket) lets you choose the target processor, active project and the build type.<br>
+- Clicking the Settings icon (sprocket) lets you choose the target processor, active project and the build type. Change the debug adapter to J-Link Server and protocol to jtag. <br>
   ![Build context](images/build_context.png)
 - Clicking the Build icon (hammer) builds the project with selected context
 - These tasks and more can be found by pressing F1 and typing CMSIS
@@ -103,12 +103,23 @@ New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name
 - Press F1, type "Run", click "Tasks: Run Task"
 - Select "Program with Security Toolkit"
 
-## Starting a Cortex-Debug session
+## Starting an ARM CMSIS Debug Session
 
-- From the CMSIS solution view click the debug icon
-- Or call the task CMSIS: Debug
-- By default the project uses J-link and Cortex-Debug and does a "launch" instead of "attach". You can change this behaviour by editing `launch.json`
-- **TIP:** You may want to use SE tools integration to install the CPU stubs
+Before starting a debug session, make sure the debugger stubs are programmed onto the M55 core. Press F1, type "Run", select "Tasks: Run Task", and choose "Alif: Install M55_HE or M55_HP debug stubs (single core configuration)". The SE Tool you configured earlier will handle programming the debug stubs to the device. This process disables sleep mode, allowing the debugger to connect.
+  ![CMSIS solution](images/stubs.png)
+
+This guide uses the ARM CMSIS debugger extension. To start debugging, open the "Run and Debug" panel in VS Code and choose the configuration that matches your target core, for example "M55_HE JLink (launch)" or "M55_HP JLink (launch)".
+<br>
+  ![CMSIS solution](images/cmsis_debugger.png)
+
+In the CMSIS solution view, first click the Build Solution icon (hammer) to build your project. Once the build completes, click the Load & Debug Application icon to launch the debugger and start a debug session.
+<br>
+  ![CMSIS solution](images/Launch.png)
+- You may need to press Enter in the terminal window to proceed.
+- The debugger will start and pause execution at the `main` function.
+- You can now step through your code as needed.
+- **TIP:** If stepping does not work, make sure the debug stubs from this project have been programmed onto the target device as described above.
+
 
 ## SEGGER RTT with Cortex-Debug
 
