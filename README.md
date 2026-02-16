@@ -6,14 +6,17 @@ A simple CMSIS-Pack based example to setup and test VS Code development environm
   - **hello** demonstrates retargeting printf() to UART
   - **hello_rtt** demonstrates retargeting printf() to SEGGER RTT
 
-- Arm GNU toolchain is used as a default. There are build-type options for IAR and ARM compiler armclang for reference.
-  - You can find the compiler specific settings in `cdefault.yaml`
-  - **TIP:** The tools loaded by Arm Environment Manager are configured in `vcpkg-configuration.json`.
-  - To download armclang you can add "arm:compilers/arm/armclang": "^6.22.0" to the "requires" object.
+## Compiler support
+Arm GNU toolchain is used as a default.
 
-## Note about Ensemble gen1 support
-The default main branch is set to support Gen 2 Ensemble devices. "gen1" branch must be used
-for older Gen 1 devices.
+In order to build with Arm LLVM edit the `alif.csolution.yml`
+```
+  # Select used compiler
+  compiler: CLANG
+```
+  - Toolchains are downloaded by Arm Environment Manager (see `vcpkg-configuration.json`)
+  - You can find the compiler specific settings in `cdefault.yaml`
+  - To download armclang you can add "arm:compilers/arm/armclang": "^6.22.0" to the "requires" object.
 
 ## Quick start
 First clone the template project repository
