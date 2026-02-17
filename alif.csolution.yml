@@ -1,11 +1,12 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/tools/projmgr/2.6.0/tools/projmgr/schemas/csolution.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/tools/projmgr/2.12.0/tools/projmgr/schemas/csolution.schema.json
 solution:
-  created-for: cmsis-toolbox@2.6.0
+  created-for: CMSIS-Toolbox@2.12.0
   cdefault:
 
   # List of tested compilers that can be selected
   select-compiler:
     - compiler: GCC
+    - compiler: CLANG
 
   # Select used compiler
   compiler: GCC
@@ -20,30 +21,50 @@ solution:
       board: Alif Semiconductor::DevKit-E7
       define:
         - "CORE_M55_HE"
+      target-set:
+        - set:
+          images:
+            - project-context: blinky.debug
 
     - type: E7-HP
       device: Alif Semiconductor::AE722F80F55D5LS:M55_HP
       board: Alif Semiconductor::DevKit-E7
       define:
         - "CORE_M55_HP"
+      target-set:
+        - set:
+          images:
+            - project-context: blinky.debug
 
     - type: E1C-HE
       device: Alif Semiconductor::AE1C1F4051920PH:M55_HE
       board: Alif Semiconductor::DevKit-E1C
       define:
         - "CORE_M55_HE"
+      target-set:
+        - set:
+          images:
+            - project-context: blinky.debug
 
     - type: E8-HE
       device: Alif Semiconductor::AE822FA0E5597LS0:M55_HE
       board: Alif Semiconductor::DevKit-E8
       define:
         - "CORE_M55_HE"
+      target-set:
+        - set:
+          images:
+            - project-context: hello.debug
 
     - type: E8-HP
       device: Alif Semiconductor::AE822FA0E5597LS0:M55_HP
       board: Alif Semiconductor::DevKit-E8
       define:
         - "CORE_M55_HP"
+      target-set:
+        - set:
+          images:
+            - project-context: blinky.debug
 
   build-types:
     - type: debug
