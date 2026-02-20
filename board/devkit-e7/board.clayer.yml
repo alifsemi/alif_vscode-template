@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/tools/projmgr/2.12.0/tools/projmgr/schemas/clayer.schema.json
+layer:
+  type: Board
+  components:
+    - component: AlifSemiconductor::BSP:Board Config
+    - component: AlifSemiconductor::BSP:DevKit Config&DevKit-e7
