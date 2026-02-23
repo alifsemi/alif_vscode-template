@@ -10,7 +10,8 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "jobs": 8
         },
         {
             "label": "Clean all (including YML build files)",
@@ -36,8 +37,8 @@
             "type": "shell",
             "command": [
                 "cpackget init https://www.keil.com/pack/index.pidx;",
-                "cpackget add https://github.com/ARM-software/CMSIS_6/releases/download/v6.0.0/ARM.CMSIS.6.0.0.pack;",
-                "cpackget add https://github.com/alifsemi/alif_ensemble-cmsis-dfp/releases/download/v2.0.4/AlifSemiconductor.Ensemble.2.0.4.pack;",
+                "cpackget add https://github.com/ARM-software/CMSIS_6/releases/download/v6.1.0/ARM.CMSIS.6.1.0.pack;",
+                "cpackget add https://github.com/alifsemi/alif_ensemble-cmsis-dfp/releases/download/v2.1.0/AlifSemiconductor.Ensemble.2.1.0.pack;",
                 "cpackget list;",
                 "echo 'Pack installation has been completed'"
             ],
@@ -137,7 +138,7 @@
                 "echo Connect > .cmd.jlink &&",
                 "echo Erase >> .cmd.jlink &&",
                 "echo Exit >> .cmd.jlink &&",
-                "JLink.exe -device AE822FA0E5597LS0_M55_HE -if jtag -speed 4000 -commandfile .cmd.jlink"
+                "JLink.exe -device AE822FA0E5597LS0_M55_HE -if swd -speed 4000 -commandfile .cmd.jlink"
             ],
             "options": {
                 "cwd": "${workspaceFolder}/",
@@ -156,9 +157,9 @@
             "type": "shell",
             "command": [
                 "echo Connect > .cmd.jlink &&",
-                "echo LoadFile \"${config:cmsis-csolution.loadElfPath}\" >> .cmd.jlink &&",
+                "echo LoadFile \"out/blinky/DevKit-E8-HE/debug/blinky.elf\" >> .cmd.jlink &&",
                 "echo Exit >> .cmd.jlink &&",
-                "JLink.exe -device AE822FA0E5597LS0_M55_HE -if jtag -speed 4000 -commandfile .cmd.jlink"
+                "JLink.exe -device AE822FA0E5597LS0_M55_HE -if swd -speed 4000 -commandfile .cmd.jlink"
             ],
             "options": {
                 "cwd": "${workspaceFolder}/",
@@ -192,8 +193,7 @@
                 "-endian",
                 "little",
                 "-if",
-                "jtag",
-                "-speed",
+                "swd-speed",
                 "4000",
                 "-nohalt",
                 "-noir",

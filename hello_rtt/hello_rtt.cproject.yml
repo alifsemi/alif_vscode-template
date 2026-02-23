@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/tools/projmgr/2.6.0/tools/projmgr/schemas/cproject.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/tools/projmgr/2.12.0/tools/projmgr/schemas/cproject.schema.json
 project:
   groups:
     - group: App
@@ -29,7 +29,13 @@ project:
     - ../libs/SEGGER_RTT_V796h/Config
 
   layers:
-    - layer: ../device/ensemble/alif-ensemble.clayer.yml
+    - layer: $BoardLayer$
 
-  packs:
-    - pack: AlifSemiconductor::Ensemble
+  components:
+    - component: ARM::CMSIS:CORE
+    - component: AlifSemiconductor::Device:Startup
+    - component: AlifSemiconductor::Device:SOC Peripherals:PINCONF
+    - component: Device:SOC Peripherals:MHU
+    - component: Services:Secure Enclave:core&Source
+    - component: Services:Secure Enclave:Initialization Helper&Source
+
