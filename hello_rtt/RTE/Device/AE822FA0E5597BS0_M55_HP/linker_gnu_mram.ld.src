@@ -32,7 +32,7 @@
 #define __HEAP_SIZE              APP_HP_HEAP_SIZE
 #define __APP_HEAP_SIZE          0x00004000
 #define __ROM_BASE               APP_MRAM_HP_BASE
-#define __ROM_SIZE               APP_MRAM_HP_SIZE
+#define __ROM_SIZE               APP_CODE_MRAM_SIZE
 
 /*
  * Note:
@@ -50,6 +50,7 @@ MEMORY
   SRAM1 (rwx) : ORIGIN = APP_SRAM1_BASE, LENGTH = APP_SRAM1_SIZE
   #endif
   MRAM  (rx)  : ORIGIN = __ROM_BASE, LENGTH = __ROM_SIZE
+  MRAM_USER  (rw)  : ORIGIN = APP_MRAM_USER_BASE, LENGTH = APP_MRAM_USER_SIZE
 }
 
 ENTRY(Reset_Handler)
@@ -270,6 +271,15 @@ SECTIONS
     KEEP(*(.eh_frame*))
     . = ALIGN(16);
   } > MRAM
+
+  .mram_user (NOLOAD) : ALIGN(16)
+  {
+    __mram_user_start__ = .;
+    *(.mram_user)
+    *(.mram_user*)
+    . = ALIGN(16);
+    __mram_user_end__ = .;
+  } > MRAM_USER
 
   /* Check if data + heap + stack exceeds RAM limit */
   ASSERT(__StackLimit >= __HeapLimit, "region RAM overflowed with stack")

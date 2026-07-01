@@ -12,7 +12,7 @@ solution:
   compiler: GCC
 
   packs:
-    - pack: AlifSemiconductor::Ensemble@2.1.0
+    - pack: AlifSemiconductor::Ensemble@2.2.0
     - pack: ARM::CMSIS@6.1.0
 
   target-types:

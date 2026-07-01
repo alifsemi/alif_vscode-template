@@ -34,7 +34,7 @@ int main (void)
 }
 
 // Stubs to suppress missing stdio definitions for nosys
-#define TRAP_RET_ZERO  {__BKPT(0); return 0;}
+#define TRAP_RET_ZERO  {return 0;}
 int _close(int val) TRAP_RET_ZERO
 int _lseek(int val0, int val1, int val2) TRAP_RET_ZERO
 int _read(int val0, char * val1, int val2) TRAP_RET_ZERO

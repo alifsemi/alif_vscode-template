@@ -16,9 +16,6 @@
 // <e> MRAM (NVM (Non-Volatile Memory)) [Driver_MRAM]
 // <i> Configuration settings for Driver_MRAM in component ::Drivers:MRAM
 #define RTE_MRAM 1
-#if RTE_MRAM
-#define RTE_MRAM_SIZE 0x0018C000
-#endif
 // </e> MRAM (NVM (Non-Volatile Memory)) [Driver_MRAM]
 
 // <e> LPCPI (Camera) [Driver_LPCPI]
@@ -129,6 +126,97 @@
 #endif
 // </e> MT9M114 [Driver_MT9M114]
 
+// <e> OV5640 [Driver_OV5640]
+// <o> Enable/Disable OV5640 camera sensor
+//     <0=> disable
+//     <1=> enable
+// <i> define if to enable or disable OV5640 camera sensor
+// <i> default: disable
+#define RTE_OV5640_CAMERA_SENSOR_LPCPI_ENABLE 0
+
+#if (RTE_OV5640_CAMERA_SENSOR_LPCPI_ENABLE)
+
+// <o> Select camera OV5640 pixel clock polarity
+//     <0=> not invert camera pixclk
+//     <1=> invert camera pixclk
+// <i> Defines camera OV5640 pixel clock polarity
+// <i> Default: not invert camera pixclk
+#define RTE_OV5640_CAMERA_SENSOR_LPCPI_PIXEL_CLK_POL   0
+
+// <o> Select camera OV5640 HSYNC polarity
+//     <0=>  not invert HSYNC input
+//     <1=>  invert HSYNC input
+// <i> Defines camera OV5640 HSYNC polarity
+// <i> Default:  not invert HSYNC input
+#define RTE_OV5640_CAMERA_SENSOR_LPCPI_HSYNC_POL       0
+
+// <o> Select camera OV5640 VSYNC polarity
+//     <0=> not invert VSYNC input
+//     <1=> invert VSYNC input
+// <i> Defines camera OV5640 VSYNC polarity
+// <i> Default:  not invert VSYNC input
+#define RTE_OV5640_CAMERA_SENSOR_LPCPI_VSYNC_POL       0
+
+// <o> Select camera OV5640 VSYNC wait
+//     <0=> vsync wait disable
+//     <1=> vsync wait enable
+// <i> Defines camera OV5640 VSYNC wait
+// <i> Default: vsync wait disable
+#define RTE_OV5640_CAMERA_SENSOR_LPCPI_VSYNC_WAIT      1
+
+// <o> Select camera OV5640 VSYNC mode
+//     <0=> sync enable
+//     <1=> data enable
+// <i> Defines camera OV5640 VSYNC mode
+// <i> Default: sync enable
+#define RTE_OV5640_CAMERA_SENSOR_LPCPI_VSYNC_MODE      0
+
+// <o> Select video data mode
+//     <0=> 1 bit
+//     <1=> 2 bit
+//     <2=> 4 bit
+//     <3=> 8 bit
+// <i> Defines video data mode
+// <i> Default: 8 bit
+#define RTE_OV5640_CAMERA_SENSOR_LPCPI_DATA_MODE       3
+
+// <o> Select Data Endianness
+//     <0=> LSB First
+//     <1=> MSB First
+// <i> Select MSB/LSB
+// <i> Default: LSB
+#define RTE_OV5640_CAMERA_SENSOR_LPCPI_DATA_ENDIANNESS 0
+
+// <o> Select CODE10ON8
+//     <0=> Disable
+//     <1=> Enable
+// <i> Defines transfer 10-bit coding over 8-bit data bus.
+// <i> Default: 8 bit
+#define RTE_OV5640_CAMERA_SENSOR_LPCPI_CODE10ON8       0
+
+// <o> select OV5640 frame height
+// <i> defines select OV5640 frame height.
+// <i> default: 120
+#define RTE_OV5640_CAMERA_SENSOR_LPCPI_FRAME_HEIGHT    120
+
+// <o> select OV5640 frame width
+// <i> defines select OV5640 frame width.
+// <i> default: 160
+#define RTE_OV5640_CAMERA_SENSOR_LPCPI_FRAME_WIDTH     160
+
+// <o> Select OV5640 camera sensor I2C instance
+// <i> Defines camera sensor OV5640 i2c instance
+//     <0=>   I2C0
+//     <1=>   I2C1
+//     <2=>   I2C2
+//     <3=>   I2C3
+//     <4=>   I2C OVER I3C
+// <i> Default: 1
+#define RTE_OV5640_CAMERA_SENSOR_LPCPI_I2C_INSTANCE    1
+
+#endif
+// </e> OV5640 [Driver_OV5640]
+
 #endif
 // </e> LPCPI (Camera) [Driver_LPCPI]
 
@@ -223,26 +311,6 @@
 // <i> Defines Virtual Channel ID
 // <i> Default: 0
 #define RTE_ILI9806E_PANEL_DSI_VC_ID        0
-
-// <o> ILI9806 LCD panel reset pin number
-// <i> Defines ILI9806 LCD panel reset pin number.
-// <i> Default: 5
-#define RTE_ILI9806E_PANEL_RESET_PIN_NO     5
-
-// <o> ILI9806 LCD panel reset pin GPIO port number
-// <i> Defines ILI9806 LCD panel reset pin GPIO port number.
-// <i> Default: 15
-#define RTE_ILI9806E_PANEL_RESET_GPIO_PORT  15
-
-// <o> ILI9806 LCD panel back light pin number
-// <i> Defines ILI9806 LCD panel back light pin number.
-// <i> Default: 1
-#define RTE_ILI9806E_PANEL_BL_LED_PIN_NO    1
-
-// <o> ILI9806 LCD panel back light pin GPIO port number
-// <i> Defines ILI9806 LCD panel back light pin GPIO port number.
-// <i> Default: 6
-#define RTE_ILI9806E_PANEL_BL_LED_GPIO_PORT 6
 
 // <e> MIPI_DSI (ILI9806E_PANEL_E43RB_FW405 | ILI9806E_PANEL_E43GB_MW405) [Driver_ILI9806E_PANEL]
 #if (RTE_ILI9806E_PANEL_E43RB_FW405_EN || RTE_ILI9806E_PANEL_E43GB_MW405_EN)
@@ -363,26 +431,6 @@
 // <i> Default: 0
 #define RTE_ILI9488_PANEL_DSI_VC_ID        0
 
-// <o> ILI9488 LCD panel reset pin number
-// <i> Defines ILI9488 LCD panel reset pin number.
-// <i> Default: 0
-#define RTE_ILI9488_PANEL_RESET_PIN_NO     0
-
-// <o> ILI9488 LCD panel reset pin GPIO port number
-// <i> Defines ILI9488 LCD panel reset pin GPIO port number.
-// <i> Default: 8
-#define RTE_ILI9488_PANEL_RESET_GPIO_PORT  8
-
-// <o> ILI9488 LCD panel back light pin number
-// <i> Defines ILI9488 LCD panel back light pin number.
-// <i> Default: 1
-#define RTE_ILI9488_PANEL_BL_LED_PIN_NO    1
-
-// <o> ILI9488 LCD panel back light pin GPIO port number
-// <i> Defines ILI9488 LCD panel back light pin GPIO port number.
-// <i> Default: 8
-#define RTE_ILI9488_PANEL_BL_LED_GPIO_PORT 8
-
 // <o> Panel hsync time in pixels
 // <i> Defines ILI9488 LCD panel hsync time in pixels.
 // <i> Default: 10
@@ -477,10 +525,10 @@
 #define RTE_CDC200_IRQ_PRI        0
 
 // <o> CDC200 clock select
-//     <0=>  400 MHz clock source (PLL_CLK1/2)
-//     <1=>  480 MHz clock source (PLL_CLK3)
+//     <0=>  Select AXI clock source
+//     <1=>  Select PLL clock source
 // <i> Defines CDC200 clock select
-// <i> Default: 400 MHz clock source (PLL_CLK1/2)
+// <i> Default: Select AXI clock source
 #define RTE_CDC200_CLK_SEL        0
 
 // <o> CDC200 background color red <0-255>
@@ -675,19 +723,6 @@
 // <i> Default: DISABLE
 #define RTE_ICM42670_IBI_ENABLE 0
 
-#if !RTE_ICM42670_IBI_ENABLE
-
-// <o> ICM42670 IMU INT pin GPIO port number range <0-15>
-// <i> Defines ICM42670 IMU INT pin GPIO port number.
-// <i> Default: 5
-#define RTE_ICM42670_INT_IO_PORT 5
-
-// <o> ICM42670 IMU INT pin number range <0-7>
-// <i> Defines ICM42670 IMU INT pin number.
-// <i> Default: 1
-#define RTE_ICM42670_INT_PIN_NO  1
-#endif
-
 #endif
 //</e> ICM42670 (Initial Measurement Unit) [Driver_ICM42670]
 
@@ -695,19 +730,6 @@
 // <i> Configuration settings for Driver_BMI323 in component ::Drivers:IMU
 #define RTE_BMI323 1
 
-#if RTE_BMI323
-
-// <o> BMI323 IMU INT pin GPIO port number range <0-15>
-// <i> Defines BMI323 IMU INT pin GPIO port number.
-// <i> Default: 8
-#define RTE_BMI323_INT_IO_PORT 8
-
-// <o> BMI323 IMU INT pin number range <0-7>
-// <i> Defines BMI323 IMU INT pin number.
-// <i> Default: 4
-#define RTE_BMI323_INT_PIN_NO  4
-
-#endif
 //</e> BMI323 (Initial Measurement Unit) [Driver_BMI323]
 #endif
 // </e> IMU (Initial Measurement Unit) [Driver_IMU]
@@ -4786,13 +4808,13 @@
 // <i> Default: BUS_WIDTH_4BIT
 #define RTE_SDC_BUS_WIDTH       1
 
-//    <o> SDC CLOCK SELECT
-//    <0=> SDC_12_5MHz
-//    <1=> SDC_25MHz
-//    <2=> SDC_50MHz
-// <i> Defines SDC0 Clock select
-// <i> Default: 50MHz
-#define RTE_SDC_CLOCK_SELECT    2
+//    <o> SDC CLOCK SELECT (Hz)
+//    <12500000=> 12.5MHz
+//    <25000000=> 25MHz
+//    <50000000=> 50MHz
+// <i> Defines SDC0 Clock frequency in Hz
+// <i> Default: 25MHz
+#define RTE_SDC_CLOCK_SELECT    25000000
 
 //    <o> SDC DMA SELECT
 //    <0=> SDMA
