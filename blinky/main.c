@@ -4,6 +4,10 @@
 #include "Driver_IO.h"
 #include "board_config.h"
 
+#if defined(ENSEMBLE_SOC_E1C)
+#include "pinconf.h"
+#endif
+
 #define _GET_DRIVER_REF(ref, peri, chan) \
     extern ARM_DRIVER_##peri Driver_##peri##chan; \
     static ARM_DRIVER_##peri * ref = &Driver_##peri##chan;
@@ -23,6 +27,11 @@ int main (void)
     if (ret != 0) {
         while(1);
     }
+
+/* In E1C LED_B pin is muxed to JTAG_TCLK by default. Change it to LED_B for this example */
+#if defined(ENSEMBLE_SOC_E1C)
+    pinconf_set(BOARD_LEDRGB0_B_GPIO_PORT, BOARD_LEDRGB_B_GPIO_PIN, PINMUX_ALTERNATE_FUNCTION_0, PADCTRL_OUTPUT_DRIVE_STRENGTH_4MA);
+#endif
 
     gpio_b->Initialize(BOARD_LEDRGB_B_GPIO_PIN, NULL);
     gpio_b->PowerControl(BOARD_LEDRGB_B_GPIO_PIN, ARM_POWER_FULL);
