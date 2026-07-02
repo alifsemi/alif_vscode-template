@@ -6,6 +6,6 @@ cbuild-pack:
     - resolved-pack: ARM::CMSIS-Compiler@2.1.0
       selected-by-pack:
         - ARM::CMSIS-Compiler
-    - resolved-pack: AlifSemiconductor::Ensemble@2.1.0
+    - resolved-pack: AlifSemiconductor::Ensemble@2.2.0
       selected-by-pack:
-        - AlifSemiconductor::Ensemble@2.1.0
+        - AlifSemiconductor::Ensemble@2.2.0

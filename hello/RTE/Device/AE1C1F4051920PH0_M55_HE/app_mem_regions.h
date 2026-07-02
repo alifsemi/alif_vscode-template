@@ -15,16 +15,31 @@
 
 // <h>MRAM XIP Configuration
 // =======================
-//   <o> RTSS HE Base address <0x80000000-0x8018C000:8>
+//   <o> RTSS HE Base address <0x80000000-0x801DCFFF:8>
 //   <i> Defines base address of RTSS HE application memory region.
 //   <i> Default: 0x80000000
 #define APP_MRAM_HE_BASE       0x80000000
-//   <o> RTSS HE Region size [bytes] <0x0-0x0018C000:8>
+//   <o> RTSS HE Region size [bytes] <0x0-0x001DD000:8>
 //   <i> Defines size of RTSS HE application memory region.
-//   <i> Default: 0x0018C000
-#define APP_MRAM_HE_SIZE       0x0018C000
-
+//   <i> Default: 0x00100000
+#define APP_MRAM_HE_SIZE       0x00100000  //1 MB
 // </h>
+
+// <h>MRAM User Configuration
+// =======================
+// <h> MRAM User Region
+//   <o> User Base address <0x80000000-0x801DCFFF:8>
+//   <i> Defines base address of MRAM user region
+#define APP_MRAM_USER_BASE    0x80100000
+
+//   <o> User Region size [bytes] <0x0-0x001DD000:8>
+//   <i> Defines size of MRAM user region
+#define APP_MRAM_USER_SIZE    0x000DD000  //884 KB
+
+// Application executable MRAM region (before USER area)
+#define APP_CODE_MRAM_SIZE  (APP_MRAM_USER_BASE - APP_MRAM_HE_BASE)
+//</h>
+
 
 // <h>RAM Configuration
 // =======================
