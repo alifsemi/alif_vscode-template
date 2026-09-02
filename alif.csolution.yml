@@ -46,6 +46,16 @@ solution:
           images:
             - project-context: blinky.debug
 
+    - type: StartKit-E1C-HE
+      device: Alif Semiconductor::AE1C1F4051920PH0:M55_HE
+      board: Alif Semiconductor::StartKit-E1C
+      variables:
+        - BoardLayer: $SolutionDir()$/board/startkit-e1c/board.clayer.yml
+      target-set:
+        - set:
+          images:
+            - project-context: blinky.debug
+
     - type: DevKit-E8-HE
       device: Alif Semiconductor::AE822FA0E5597LS0:M55_HE
       board: Alif Semiconductor::DevKit-E8
