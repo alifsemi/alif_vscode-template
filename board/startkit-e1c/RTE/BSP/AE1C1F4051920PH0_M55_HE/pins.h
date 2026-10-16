@@ -186,7 +186,7 @@ const struct pinconf board_pinconf[] = {
 	/* Selected: UT3_T1_A for "LEDRGB0_R" */
 	{PORT_4, PIN_7, PINMUX_ALTERNATE_FUNCTION_3, PADCTRL_READ_ENABLE | PADCTRL_OUTPUT_DRIVE_STRENGTH_4MA},
 
-       /* P7_0 on pin D9. Functions: [0]: GPIO7_0, [1]: OSPI0_SCLK_C, [2]: >>>LPUART_RX_B<<<, [3]: SPI2_MISO_B, [4]: I2C0_SDA_C, [5]: LPCAM_D0_B, [6]: CDC_D16_A, [7]: BLE_DBG24 */
+       /* P7_0 on pin D9. Functions: [0]: GPIO7_0, [1]: OSPI0_SCLK_C, [2]: >>>LPUART_RX_B<<<, [3]: SPI2_MISO_B, [4]: I2C0_SDA_, [5]: LPCAM_D0_B, [6]: CDC_D16_A, [7]: BLE_DBG24 */
        /* Selected: LPUART_RX_B */
        {PORT_7, PIN_0, PINMUX_ALTERNATE_FUNCTION_2, PADCTRL_READ_ENABLE},
 
